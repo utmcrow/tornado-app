@@ -10,10 +10,6 @@ from tornado.options import parse_command_line
 
 application = tornado.web.Application(routes.routes)
 
-if __name__ == "__main__":
-    application.listen(8888)
-    tornado.ioloop.IOLoop.instance().start()
-
 def main():
     parse_command_line()
     app = tornado.web.Application(
