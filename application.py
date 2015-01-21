@@ -14,11 +14,11 @@ def main():
     parse_command_line()
     app = tornado.web.Application(
         routes.routes,
-        cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
-        login_url="/auth/login",
+        #cookie_secret=settings.COOKIE_SECRET,
+        #ogin_url="/auth/login",
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
-        xsrf_cookies=True,
+        #xsrf_cookies=True,
         debug=settings.DEBUG,
         )
     app.listen(settings.PORT)
