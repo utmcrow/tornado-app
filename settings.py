@@ -1,6 +1,6 @@
 __author__ = 'crow'
 
-PORT = 8888
+PORT = 8889
 
 DEBUG = True
 
