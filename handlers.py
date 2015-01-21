@@ -14,8 +14,9 @@ class BaseHandler(tornado.web.RequestHandler):
         return tornado.escape.json_decode(user_json)
 
 class MainHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
-        self.write("Hello, world")
+        self.render("main.html")
 
 class PageHandler(BaseHandler):
     def get(self):
