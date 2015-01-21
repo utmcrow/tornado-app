@@ -22,6 +22,10 @@ class PageHandler(BaseHandler):
     def get(self):
         self.write("Hello, page")
 
+class ExampleHandler(BaseHandler):
+    def get(self):
+        self.render("example.html")
+
 class AuthLoginHandler(BaseHandler, tornado.auth.GoogleMixin):
     @gen.coroutine
     def get(self):
