@@ -7,6 +7,7 @@ import routes
 import settings
 import os.path
 
+
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = routes.routes
@@ -19,6 +20,7 @@ class Application(tornado.web.Application):
             debug=settings.DEBUG,
         )
         tornado.web.Application.__init__(self, handlers, **options)
+
 
 def main():
     http_server = tornado.httpserver.HTTPServer(Application())

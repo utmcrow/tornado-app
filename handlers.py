@@ -13,18 +13,22 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
 
+
 class MainHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         self.render("main.html")
 
+
 class PageHandler(BaseHandler):
     def get(self):
         self.write("Hello, page")
 
+
 class ExampleHandler(BaseHandler):
     def get(self):
         self.render("example.html")
+
 
 class AuthLoginHandler(BaseHandler, tornado.auth.GoogleMixin):
     @gen.coroutine
