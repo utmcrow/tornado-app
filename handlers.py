@@ -33,7 +33,7 @@ class AuthLoginHandler(BaseHandler, tornado.auth.GoogleMixin):
             user = yield self.get_authenticated_user()
             self.set_secure_cookie(settings.COOKIE_TOKEN,
                                    tornado.escape.json_encode(user))
-            self.redirect("/")
+            self.redirect("/example")
             return
         self.authenticate_redirect(ax_attrs=["name"])
 
