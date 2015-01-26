@@ -6,12 +6,31 @@ import tornado.auth
 import settings
 
 from tornado import gen
+from proxy import Test
+
+import pymongo
+
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         user_json = self.get_secure_cookie(settings.COOKIE_TOKEN)
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
+
+
+class MongoTestHandlerGet(BaseHandler):
+    def get(self, id):
+        testdata = Test.get_document(id)
+        self.render("main.html",entry=testdata)
+
+
+class MongoTestHandlerSet(BaseHandler):
+    def get(self, id):
+        document = {
+            '_id': id,
+            'data': 'hehe'
+        }
+        Test.save(document)
 
 
 class MainHandler(BaseHandler):
