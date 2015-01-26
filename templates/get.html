@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% block body %}
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        {% if entry %}
+        <h2>{{ entry['_id'] }}</h2>
+        <h3>{{ entry['data'] }}</h2>
+        {% end %}
+      </div>
+    </div>
+{% end%}

@@ -21,7 +21,7 @@ class BaseHandler(tornado.web.RequestHandler):
 class MongoTestHandlerGet(BaseHandler):
     def get(self, id):
         testdata = Test.get_document(id)
-        self.render("main.html",entry=testdata)
+        self.render("get.html",entry=testdata)
 
 
 class MongoTestHandlerSet(BaseHandler):
@@ -36,17 +36,12 @@ class MongoTestHandlerSet(BaseHandler):
 class MainHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.render("main.html")
+        self.render("example_bootstrap.html")
 
 
 class PageHandler(BaseHandler):
     def get(self):
-        self.write("Hello, page")
-
-
-class ExampleHandler(BaseHandler):
-    def get(self):
-        self.render("example.html")
+        self.render("get.html",entry=False)
 
 
 class AuthLoginHandler(BaseHandler, tornado.auth.GoogleMixin):
@@ -56,7 +51,7 @@ class AuthLoginHandler(BaseHandler, tornado.auth.GoogleMixin):
             user = yield self.get_authenticated_user()
             self.set_secure_cookie(settings.COOKIE_TOKEN,
                                    tornado.escape.json_encode(user))
-            self.redirect("/example")
+            self.redirect("/")
             return
         self.authenticate_redirect(ax_attrs=["name"])
 

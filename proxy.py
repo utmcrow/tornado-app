@@ -241,7 +241,6 @@ class DataProvider(Mapping):
         :param update: update specification
         :type update: dict
         """
-        #TODO: drop document from cache, if necessary
         if isinstance(spec, dict):
             multi = True
         elif isinstance(spec, (list, set,)):
@@ -283,4 +282,4 @@ class DataProvider(Mapping):
 class Test(MongoProxy):
     db = settings.DB_DATA
     collection = 'test'
-    use_cache = False
+    use_cache = True
