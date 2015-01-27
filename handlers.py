@@ -6,9 +6,7 @@ import tornado.auth
 import settings
 
 from tornado import gen
-from proxy import Test
-
-import pymongo
+from proxy import PymongoTestProxy
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -18,19 +16,19 @@ class BaseHandler(tornado.web.RequestHandler):
         return tornado.escape.json_decode(user_json)
 
 
-class MongoTestHandlerGet(BaseHandler):
+class PymongoTestHandlerGet(BaseHandler):
     def get(self, id):
-        testdata = Test.get_document(id)
+        testdata = PymongoTestProxy.get_document(id)
         self.render("get.html",entry=testdata)
 
 
-class MongoTestHandlerSet(BaseHandler):
+class PymongoTestHandlerSet(BaseHandler):
     def get(self, id):
         document = {
             '_id': id,
             'data': 'hehe'
         }
-        Test.save(document)
+        PymongoTestProxy.save(document)
 
 
 class MainHandler(BaseHandler):
