@@ -7,6 +7,7 @@ routes = [
     (r"/page", handlers.PageHandler),
     (r"/pymongotestget-([^/]+)", handlers.PymongoTestHandlerGet),
     (r"/pymongotestset-([^/]+)", handlers.PymongoTestHandlerSet),
+    (r"/motortestget-([^/]+)", handlers.MotorTestHandlerGet),
     (r"/auth/login", handlers.AuthLoginHandler),
     (r"/auth/logout", handlers.AuthLogoutHandler),
 ]

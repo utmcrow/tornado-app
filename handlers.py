@@ -6,7 +6,8 @@ import tornado.auth
 import settings
 
 from tornado import gen
-from proxy import PymongoTestProxy
+from proxy import PymongoTestProxy, MotorTestProxy
+
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -14,6 +15,12 @@ class BaseHandler(tornado.web.RequestHandler):
         user_json = self.get_secure_cookie(settings.COOKIE_TOKEN)
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
+
+
+class MotorTestHandlerGet(BaseHandler):
+    def get(self, id):
+        testdata = MotorTestProxy.get_document(id)
+        self.render("get.html",entry=testdata)
 
 
 class PymongoTestHandlerGet(BaseHandler):

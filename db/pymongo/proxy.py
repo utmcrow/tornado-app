@@ -32,7 +32,7 @@ def get_mongo_client(host=DEFAULT_HOST, port=DEFAULT_PORT, **kwargs):
         client = _mongo_clients[(host, port)] = MongoClient(host, port, **kwargs)
         return client
 
-class MongoProxy():
+class PymongoProxy():
     db = ''
     collection = ''
     use_cache = True
