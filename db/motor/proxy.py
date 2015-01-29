@@ -17,16 +17,13 @@ class MotorProxy():
     collection = ''
     use_cache = True
 
-    @classmethod
-    def get_data_provider(cls):
-        client = motor.MotorClient(DEFAULT_HOST, DEFAULT_PORT)
-        db = client[cls.db]
-        collection = db[cls.collection]
+    def get_data_provider(self):
+        collection = self.settings['db'][self.db][self.collection]
         return collection
 
+    def get_document(self, _id):
+        return self.get_data_provider().find_one(_id)
 
-    @classmethod
-    def get_document(cls, _id):
-        document = yield cls.get_data_provider().find().count()
-        print document
-        pass
+    def find(self, *args, **kwargs):
+        return self.get_data_provider().find(*args, **kwargs)
+

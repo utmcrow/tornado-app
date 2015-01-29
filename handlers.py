@@ -17,10 +17,25 @@ class BaseHandler(tornado.web.RequestHandler):
         return tornado.escape.json_decode(user_json)
 
 
-class MotorTestHandlerGet(BaseHandler):
+class MotorTestHandlerGet(MotorTestProxy, BaseHandler):
+
+    @gen.coroutine
     def get(self, id):
-        testdata = MotorTestProxy.get_document(id)
-        self.render("get.html",entry=testdata)
+        result = []
+        result = yield self.get_document(id)
+        self.render("get.html", entry=result)
+
+
+class MotorTestHandlerFind(MotorTestProxy, BaseHandler):
+
+    @gen.coroutine
+    def get(self):
+        result = []
+        query = self.find()
+        while (yield query.fetch_next):
+            result.append(query.next_object())
+        pass
+        #self.render("get.html", entry=result)
 
 
 class PymongoTestHandlerGet(BaseHandler):
