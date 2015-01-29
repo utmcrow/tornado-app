@@ -11,4 +11,5 @@ routes = [
     (r"/motortestfind", handlers.MotorTestHandlerFind),
     (r"/auth/login", handlers.AuthLoginHandler),
     (r"/auth/logout", handlers.AuthLogoutHandler),
+    (r"/([^/]+)", handlers.MainHandler),
 ]

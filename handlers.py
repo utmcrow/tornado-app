@@ -53,7 +53,7 @@ class PymongoTestHandlerSet(BaseHandler):
 
 class MainHandler(BaseHandler):
     @tornado.web.authenticated
-    def get(self):
+    def get(self,*args,**kwargs):
         self.render("example_bootstrap.html")
 
 
