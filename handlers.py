@@ -33,8 +33,7 @@ class MotorTestHandlerFind(MotorTestProxy, BaseHandler):
         query = self.find()
         while (yield query.fetch_next):
             result.append(query.next_object())
-        pass
-        #self.render("get.html", entry=result)
+        self.render("list.html", entries=result)
 
 
 class PymongoTestHandlerGet(BaseHandler):
