@@ -21,7 +21,6 @@ class MotorTestHandlerGet(MotorTestProxy, BaseHandler):
 
     @gen.coroutine
     def get(self, id):
-        result = []
         result = yield self.get_document(id)
         self.render("get.html", entry=result)
 
