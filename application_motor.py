@@ -16,10 +16,6 @@ except ImportError:
     DEFAULT_HOST = 'localhost'
     DEFAULT_PORT = 27017
 
-def db():
-    return  motor.MotorClient(DEFAULT_HOST, DEFAULT_PORT)
-    #return client[settings.DB_DATA]
-
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -31,7 +27,7 @@ class Application(tornado.web.Application):
             static_path=os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies=True,
             debug=settings.DEBUG,
-            db=db()
+            db=motor.MotorClient(DEFAULT_HOST, DEFAULT_PORT)
         )
         tornado.web.Application.__init__(self, handlers, **options)
 
