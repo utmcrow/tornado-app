@@ -25,6 +25,17 @@ class MotorTestHandlerGet(MotorTestProxy, BaseHandler):
         self.render("get.html", entry=result)
 
 
+class MotorTestHandlerSet(MotorTestProxy, BaseHandler):
+
+    @gen.coroutine
+    def get(self, id):
+        document = {
+            '_id': id,
+            'data': 'hoho'
+        }
+        self.save(document)
+
+
 class MotorTestHandlerFind(MotorTestProxy, BaseHandler):
 
     @gen.coroutine

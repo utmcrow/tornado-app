@@ -27,3 +27,6 @@ class MotorProxy():
     def find(self, *args, **kwargs):
         return self.get_data_provider().find(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        return self.get_data_provider().save(*args, **kwargs)
+
